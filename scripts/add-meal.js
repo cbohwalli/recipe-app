@@ -82,7 +82,7 @@ async function addSearchedMeal(mealId) {
     mealsContainer.appendChild(mealContainer);
 
     const mealImageContainer = document.getElementById('image:' + mealData.idMeal);
-    mealImageContainer.style.backgroundImage = "url('"+mealData.strMealThumb+"'), url('test2.jpg')"; 
+    mealImageContainer.style.backgroundImage = "url('"+mealData.strMealThumb+"'), url('filler-image.jpg')"; 
 
     addEventListenerSaveButton(mealData, 'saveButton:' + mealData.idMeal);
     addEventListenerOpenRecipe(mealData, 'image:' + mealData.idMeal);    
