@@ -1,0 +1,49 @@
+.savedMeals {
+    width: max(100%, 600px);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    background-color: #F3F7D4;
+    overflow: hidden;
+    position: fixed;
+    top: 100px;
+}
+
+.savedMeal {
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+}
+
+.savedMeal-name {
+    font-size: 1rem;
+    width: 150px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.savedMeal-img {
+    width: 100%;
+    border-radius: 100px;
+}
+
+.savedMeal-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.savedMeal:hover .savedMeal-delete {
+    opacity: 1;
+}

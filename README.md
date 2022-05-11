@@ -1,6 +1,6 @@
 # Recipe web app
 
-![test](showcase.png)
+![test](design.png)
 
 ## Description
 ---
@@ -13,8 +13,8 @@ Some of the features are:
 * search meal by category
 * autocomplete prediction
 * get random recipe
-* save meal
+* save meal to container
 * store saved meals in local storage
 * get saved meals from local storage
 * open and read recipe
-
+* click and drag the saved meal container

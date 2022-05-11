@@ -1,0 +1,42 @@
+.main {
+    margin-top: 320px;
+}
+
+.meal {
+    height: 700px;
+    width: max(calc(100% - 40px), 600px);
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #093426;
+    color: #CBE432; 
+    text-align: center;
+    overflow: hidden;
+}
+
+.meal-image {
+    height: 600px;
+    background-repeat: no-repeat, repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.meal-name {
+    margin-top: 10px;
+}
+
+.meal-button {
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #e6f871;
+    background-color: transparent;
+    color:#CBE432;
+}
+
+.meal-button:hover {
+    box-shadow: 0 0 10px #dcec70, 0 0 12px #ecf7a4;
+}

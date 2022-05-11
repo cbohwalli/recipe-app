@@ -1,5 +1,5 @@
 const dragBar = {
-    container: document.getElementById('savedMealsContainer'),
+    container: document.getElementById('savedMeals'),
     isDown: false,
     startX: 0,
     scrollLeft: 0,

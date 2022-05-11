@@ -3,16 +3,14 @@ const mealsContainer = document.getElementById('mealsContainer');
 function addRandomMeal(mealData) {
 
     const mealContainer = document.createElement("div");
-    mealContainer.classList.add("mealContainer");
+    mealContainer.classList.add("meal");
     mealContainer.innerHTML = `
-        <div class='mealImageContainer' id='image:${mealData.idMeal}'></div>
-        <div class='mealNameAndButtonsContainer'>
-        <h2 id=text:${mealData.idMeal}>${mealData.strMeal}</h2>
-        <button id="randomButton">Random Recipe</button>
-        <button class="saveButton" id="saveButton:${mealData.idMeal}">
+        <div class='meal-image' id='image:${mealData.idMeal}'></div>
+        <h2 class='meal-name' id=text:${mealData.idMeal}>${mealData.strMeal}</h2>
+        <button class='meal-button' id="randomButton">Random Recipe</button>
+        <button class='meal-button' id="saveButton:${mealData.idMeal}">
           <i class="${!!document.getElementById('saved:' + mealData.idMeal) ? "fa-solid" : "fa-regular"} fa-heart"></i>
         </button>
-        </div>
     `;
 
     mealsContainer.innerHTML = "";
@@ -29,27 +27,35 @@ function addRandomMeal(mealData) {
 async function addRecipe(mealData) {
     
     const mealContainer = document.createElement("div");
-    mealContainer.classList.add("recipeContainer"); 
+    mealContainer.classList.add("recipe"); 
     mealContainer.innerHTML = `
-        <div class='mealNameContainer'>
-            <h2>${mealData.strMeal}</h2>
-        </div>
+        <h2 class='recipe-heading'>${mealData.strMeal}</h2>
 
-        <div class='ingrediensContainer'> 
-            <h2>Ingredienser</h2>
-            <ul id='ingrediensList'></ul>
+        <div class='ingredientsAndInstructions'>
+            <h2>Ingredients</h2>
+            <ul class='ingredientsAndInstructions-ingredents' id='ingredients'></ul>
         </div>
         
-        <div class='instructionContainer'>
-            <h2>Instruktioner</h2>
-            <p id='instructions'>${mealData.strInstructions}</p>
+        <div class='ingredientsAndInstructions'>
+            <h2>Instructions</h2>
+            <p class='ingredientsAndInstructions-instructions' id='instructions'>${mealData.strInstructions}</p>
         </div>
+
+        <div class='saveButtonContainer'>
+            <button class='saveButtonContainer-saveButton' id="saveButton:${mealData.idMeal}">
+                <i class="${!!document.getElementById('saved:' + mealData.idMeal) ? "fa-solid" : "fa-regular"} fa-heart fa-3x"></i>
+            </button>
+        </div>
+
+        
     `;
 
     mealsContainer.innerHTML = "";
     mealsContainer.appendChild(mealContainer);
 
     addIngredienses(mealData);
+
+    addEventListenerSaveButton(mealData, 'saveButton:' + mealData.idMeal);
 }
 
 async function addSearchedMeals(searchWord) {
@@ -67,16 +73,15 @@ async function addSearchedMeal(mealId) {
 
     const mealData = await getMealById(mealId); 
 
-    const mealContainer = document.createElement("div");
-    mealContainer.classList.add("mealContainer"); 
+    const mealContainer = document.createElement('div');
+    mealContainer.classList.add('meal'); 
     mealContainer.innerHTML = `
-        <div class='mealImageContainer' id='image:${mealData.idMeal}'></div>
-        <div class='mealNameAndButtonsContainer'>
-            <h2 id=text:${mealData.idMeal}>${mealData.strMeal}</h2>
-            <button class="saveButtonSearch" id="saveButton:${mealData.idMeal}">
-                <i class="${!!document.getElementById('saved:' + mealData.idMeal) ? "fa-solid" : "fa-regular"} fa-heart"></i>
-            </button>
-        </div>
+        <div class='meal-image' id='image:${mealData.idMeal}'></div>
+        <h2 class='meal-name' id=text:${mealData.idMeal}>${mealData.strMeal}</h2>
+        <button class='meal-button' id='saveButton:${mealData.idMeal}'>
+            <i class='${!!document.getElementById('saved:' + mealData.idMeal) ? 'fa-solid' : 'fa-regular'}
+            fa-heart'></i>
+        </button>    
     `;
 
     mealsContainer.appendChild(mealContainer);
@@ -90,11 +95,12 @@ async function addSearchedMeal(mealId) {
 
 function addIngredienses(mealData) {
 
-    const ingrediensList = document.getElementById('ingrediensList');
+    const ingrediensList = document.getElementById('ingredients');
     const ingredienses = getIngredienses(mealData);
 
     ingredienses.forEach(element => {
       let newIngredient = document.createElement("li");
+      newIngredient.classList.add("ingredientsAndInstructions-ingrediens");
       newIngredient.innerHTML = element;
       ingrediensList.appendChild(newIngredient);
     });
@@ -105,7 +111,7 @@ function getIngredienses(mealData) {
     let ingredienses = [];
 
     for (let index = 1; index < 21; index++) {
-        let ingredient = "strIngredient" + index;
+        let ingredient = 'strIngredient' + index;
 
         if (mealData[ingredient].length == 0) { 
             return ingredienses; 
@@ -152,14 +158,14 @@ function saveMeal(mealData) {
     savedMeal.classList.add('savedMeal');
     savedMeal.setAttribute('id', 'savedMeal:' + mealData.idMeal);
     savedMeal.innerHTML = `
-        <img src="${mealData.strMealThumb}">
-        <span class='savedMealName'>${mealData.strMeal}</span>
-        <button class='deleteSavedMeal' id='deleteButton:${mealData.idMeal}'>
-            <i class="fa-solid fa-x"></i>
+        <img class='savedMeal-img' src='${mealData.strMealThumb}'>
+        <h3 class='savedMeal-name'>${mealData.strMeal}</h3>
+        <button class='savedMeal-delete' id='deleteButton:${mealData.idMeal}'>
+            <i class='fa-solid fa-x'></i>
         </button>
     `;
 
-    const savedMealsContainer = document.getElementById('savedMealsContainer')
+    const savedMealsContainer = document.getElementById('savedMeals')
     savedMealsContainer.appendChild(savedMeal);
 
     addDeleteSavedMealHandler(mealData);
@@ -215,7 +221,6 @@ async function getMealsFromLocalStorage() {
     for (let i = 0; i < localStorage.length; i++) {
         const key = await localStorage.key(i);
         const mealData = await localStorage.getItem(key);
-        console.log(mealData);
         saveMeal(JSON.parse(mealData));
     }
 }

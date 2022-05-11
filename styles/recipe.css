@@ -1,0 +1,60 @@
+.recipe {
+    height: 700px;
+    width: max(calc(100% - 40px), 600px);
+    margin-left: 20px;
+    border-radius: 10px;
+    background-color: #093426;
+    color: #CBE432;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 500px 100px;
+}
+
+.recipe-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: span 2;
+    grid-row: span 1;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.ingredientsAndInstructions {
+    padding: 20px;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.ingredientsAndInstructions-instructions, .ingredientsAndInstructions-ingredents {
+    padding: 20px;
+    letter-spacing: 1px;
+}
+
+.ingredientsAndInstructions::-webkit-scrollbar {
+    display: none;
+}
+
+.ingredientsAndInstructions-ingrediens {
+    padding-bottom: 10px;
+}
+
+.saveButtonContainer {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.saveButtonContainer-saveButton {
+    background-color: transparent;
+    border: 1px solid #e6f871;
+    padding: 15px;
+    border-radius: 10px;
+    color: #e6f871;
+}
+
+.saveButtonContainer-saveButton:hover {
+    box-shadow: 0 0 10px #dcec70, 0 0 12px #ecf7a4;
+}
